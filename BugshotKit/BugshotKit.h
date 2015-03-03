@@ -88,6 +88,13 @@ typedef enum : NSUInteger {
  */
 + (void)setDisplayConsoleTextInLogViewer:(BOOL)displayText;
 
+/*
+ Automatically dismiss the Bugshot Kit view on app foreground. Defaults to YES.
+
+ @param shouldDismiss YES if the window should automatically dismiss the Bugshot view. NO otherwise.
+ */
++ (void)setDismissViewOnAppForeground:(BOOL)shouldDisimss;
+
 // feel free to mess with these if you want
 
 - (void)currentConsoleLogWithDateStamps:(BOOL)dateStamps
@@ -99,6 +106,7 @@ typedef enum : NSUInteger {
 
 
 @property (nonatomic) BOOL displayConsoleTextInLogViewer;
+@property (nonatomic) BOOL dismissViewOnAppForeground;
 @property (nonatomic, strong) UIColor *annotationFillColor;
 @property (nonatomic, strong) UIColor *annotationStrokeColor;
 @property (nonatomic, strong) UIColor *toggleOnColor;

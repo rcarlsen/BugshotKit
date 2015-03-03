@@ -108,6 +108,11 @@ UIImage *BSKImageWithDrawing(CGSize size, void (^drawingCommands)())
     BugshotKit.sharedManager.displayConsoleTextInLogViewer = displayText;
 }
 
++ (void)setDismissViewOnAppForeground:(BOOL)shouldDisimss
+{
+    BugshotKit.sharedManager.dismissViewOnAppForeground = shouldDisimss;
+}
+
 + (UIFont *)consoleFontWithSize:(CGFloat)size
 {
     static dispatch_once_t onceToken;
@@ -165,6 +170,8 @@ UIImage *BSKImageWithDrawing(CGSize size, void (^drawingCommands)())
         
         self.consoleRefreshThrottler = [[BSK_MABGTimer alloc] initWithObject:self behavior:BSK_MABGTimerCoalesce queueLabel:"BugshotKit console throttler"];
         [self.consoleRefreshThrottler setTargetQueue:self.logQueue];
+
+        self.dismissViewOnAppForeground = YES;
         
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(newWindowDidBecomeVisible:) name:UIWindowDidBecomeVisibleNotification object:nil];
         

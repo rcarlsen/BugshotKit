@@ -31,7 +31,9 @@
 
 - (void)applicationWillEnterForeground:(NSNotification *)n
 {
-    [BugshotKit dismissAninmated:NO completion:NULL];
+    if ([BugshotKit.sharedManager dismissViewOnAppForeground]) {
+        [BugshotKit dismissAninmated:NO completion:NULL];
+    }
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)n
